@@ -113,18 +113,18 @@ boxesArr.forEach(cur =>
         
 
     class Street extends Town {
-        constructor(name, buildYear, length){
+        constructor(name, buildYear, size){
         super(name, buildYear) 
-            this.length = length;
+            this.size = size;
         } 
     }
 
 
 //Create four parks
-    const agodi = new Park ("Agodi", 2014, 1013, 625);
-    const saro =  new Park ("Saro", 1990, 3018, 777);
-    const wafer = new Park ("Wafer", 2003, 899, 322 );
-    const stanley = new Park ("Stanley", 2018, 423, 100);
+    const agodi = new Park ("Agodi", 2014, 1013, 62);
+    const wafer = new Park ("Wafer", 2003, 899, 32 );
+    const stanley = new Park ("Stanley", 2018, 423, 10);
+    const saro =  new Park ("Saro", 1990, 3018, 77);
 
     const parkList = [agodi, saro, wafer, stanley];
 
@@ -149,25 +149,58 @@ boxesArr.forEach(cur =>
         let stanleyDensity = stanley.density();
 
         //Function that loops over the streets and states their densities
-       /* const reader = (parkOne, parkTwo, parkThree, parkFour) => {
-            for (let name of )
-        } */
+        //parkOne, parkTwo, parkThree, parkFour
+        const reader = (array1) => {
+        for (const element of array1) {
+         console.log(`${element.name} Park has a tree density of ${element.density()} trees per square km`);
+            
+          }
+        }
 
-        //reader(wafer);
+        //console.log(reader(parkList));
+
+        //Create a function to read the name of the Park(s) with > 1000 trees.
+        treeCounter = (array2) => {
+            for (const value of array2){
+                if (value.numberOfTrees > 1000){
+                    console.log(`${value.name} Park has more than 1000 trees. ` )
+                }
+            }
+        }
+
+        
         
     //console.log(parkList.length);
 
 //Create three streets
-    const parklane = new Street ("Parklane", 1996, 20000);
-    const haven = new Street ("Haven", 2006, 13000);
-    const akobo = new Street ("Akobo", 1972, 50050);
+    const parklane = new Street ("Parklane", 1996, 2);
+    const haven = new Street ("Haven", 2006, 1.3);
+    const akobo = new Street ("Akobo", 1972, 5);
 
     const streetList = [parklane, haven, akobo];
+
+    const streetDetailer = (array3) => {
+        let size;
+        for (const element of array3){
+            if (element.size > 3){
+                size = "big"
+            } else if (element.size < 2){
+                size = "small"
+            } else size = "normal"
+            console.log(`${element.name} Avenue, built in ${element.buildYear}, is a ${size} street.`);
+        }   
+    } 
+
+    
    // agodi.density();
     //wafer.age();
 
     console.log (` ----PARKS REPORT----
-    Our ${parkList.length} parks have an average of ${avg} years
-
-
+    Our ${parkList.length} parks have an average age of ${avg} years.
     `); 
+    console.log(reader(parkList));
+    console.log(treeCounter(parkList));
+
+    console.log(`---STREETS REPORT---
+    Our ${streetList.length} streets have a total length of ${parklane.size + haven.size + akobo.size} km with an average of ${(parklane.size + haven.size + akobo.size)/streetList.length} km`);
+    console.log(streetDetailer(streetList));
